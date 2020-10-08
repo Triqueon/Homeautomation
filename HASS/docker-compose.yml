@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  ha:
+    image: homeassistant/home-assistant:0.103.6
+    hostname: homeassistant
+    restart: always
+    environment:
+      - TZ=Europe/Berlin
+    network_mode: host
+    dns:
+      - 192.168.2.70
+    volumes:
+      - type: bind
+        source: /etc/docker/smarthome/ha_conf
+        target: /config
+    depends_on:
+      - mariadb
+
+  mosquitto:
+    image: eclipse-mosquitto:1.6.8
+    hostname: mosquitto
+    network_mode: host
+    restart: always
+
+  mariadb:
+    hostname: mariadb
+    image: mariadb:10.4.11
+    restart: always
+    network_mode: host
+    dns:
+      - 192.168.2.70
+    volumes:
+      - type: bind
+        source: /var/lib/mariadb_docker
+        target: /var/lib/mysql

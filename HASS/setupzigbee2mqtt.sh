@@ -43,8 +43,6 @@ sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 cd /opt/zigbee2mqtt
 sudo -u zigbee npm ci
 
-sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
-
 
 sudo systemctl start zigbee2mqtt
 

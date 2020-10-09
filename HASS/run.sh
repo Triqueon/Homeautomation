@@ -13,6 +13,6 @@ ARCHITECTURE=$(sudo docker info | grep "Architecture: " | sed 's/^.*: //')
 if [[ $ARCHITECTURE == armv7* ]]; then
   DB_IMAGE="jsurf/rpi-mariadb"
 fi
-echo $DB_IMAGE
+export $DB_IMAGE
 
 docker-compose up -d --build

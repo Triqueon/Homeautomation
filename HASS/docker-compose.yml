@@ -12,7 +12,7 @@ services:
       - type: bind
         source: ./ha_conf
         target: /config
-    depends_on:
+    # depends_on:
       # - mariadb
 
   mosquitto:

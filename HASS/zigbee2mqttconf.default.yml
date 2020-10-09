@@ -1,3 +1,4 @@
+homeassistant: true
 # MQTT settings
 mqtt:
   # MQTT base topic for Zigbee2MQTT MQTT messages

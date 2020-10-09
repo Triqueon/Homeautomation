@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # solve docker memory warning issues.
 #TODO Only do this on raspbian

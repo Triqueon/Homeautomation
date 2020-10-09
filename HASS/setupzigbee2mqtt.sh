@@ -5,8 +5,12 @@ set -e
 
 ##Setup zigbee2mqtt
 echo 'Installing zigbee2mqtt...'
-sudo addgroup zigbee
-sudo adduser zigbee --ingroup zigbee
+if [ ! $(getent group zigbee) ]; then
+  sudo addgroup zigbee
+fi
+if id 'zigbee' &>/dev/null; then
+  sudo adduser zigbee --ingroup zigbee
+fi
 # Setup Node.js repository
 sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
@@ -32,9 +36,11 @@ sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 
 # Install dependencies (as user "pi")
 cd /opt/zigbee2mqtt
-npm ci
+sudo -u zigbee npm ci
 
 sudo cp zigbee2mqttconf.default.yml /opt/zigbee2mqtt/configuration.yaml
+sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
+
 sudo cp zigbee2mqtt.default.service /etc/systemd/system/zigbee2mqtt.service
 
 sudo systemctl start zigbee2mqtt

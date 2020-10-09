@@ -33,16 +33,18 @@ npm --version  # Should output 6.X
 # Clone Zigbee2MQTT repository
 sudo rm -rf /opt/zigbee2mqtt
 sudo git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt
+
+sudo cp zigbee2mqttconf.default.yml /opt/zigbee2mqtt/configuration.yaml
+sudo cp zigbee2mqtt.default.service /etc/systemd/system/zigbee2mqtt.service
+
 sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 
 # Install dependencies (as user "pi")
 cd /opt/zigbee2mqtt
 sudo -u zigbee npm ci
 
-sudo cp zigbee2mqttconf.default.yml /opt/zigbee2mqtt/configuration.yaml
 sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 
-sudo cp zigbee2mqtt.default.service /etc/systemd/system/zigbee2mqtt.service
 
 sudo systemctl start zigbee2mqtt
 

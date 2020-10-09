@@ -31,6 +31,7 @@ node --version  # Should output v12.X or v10.X
 npm --version  # Should output 6.X
 
 # Clone Zigbee2MQTT repository
+sudo rm -rf /opt/zigbee2mqtt
 sudo git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt
 sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 

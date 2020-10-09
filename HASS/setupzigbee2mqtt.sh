@@ -4,7 +4,8 @@
 set -e
 
 ##Setup zigbee2mqtt
-
+echo 'Installing zigbee2mqtt...'
+sudo addgroup zigbee
 sudo adduser zigbee --ingroup zigbee
 # Setup Node.js repository
 sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -16,10 +17,12 @@ sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 # NOTE 2: On x86, Node.js 10 may not work. It's recommended to install an unofficial Node.js 12 build which can be found here: https://unofficial-builds.nodejs.org/download/release/ (e.g. v12.16.3)
 
 # Install Node.js;
+echo 'Installing node.js'
 sudo apt-get install -y nodejs git make g++ gcc
 
 # Verify that the correct nodejs and npm (automatically installed with nodejs)
 # version has been installed
+echo 'Checking node and npm versions (should be >10 and >6)'
 node --version  # Should output v12.X or v10.X
 npm --version  # Should output 6.X
 

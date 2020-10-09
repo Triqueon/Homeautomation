@@ -8,7 +8,7 @@ echo 'Installing zigbee2mqtt...'
 if [ ! $(getent group zigbee) ]; then
   sudo addgroup zigbee
 fi
-if id 'zigbee' &>/dev/null; then
+if ! id 'zigbee' &>/dev/null; then
   sudo adduser zigbee --ingroup zigbee
 fi
 # Setup Node.js repository

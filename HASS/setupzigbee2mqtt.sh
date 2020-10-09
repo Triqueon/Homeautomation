@@ -1,3 +1,8 @@
+
+#! /bin/bash
+
+set -e
+
 ##Setup zigbee2mqtt
 
 sudo adduser zigbee --ingroup zigbee
@@ -25,3 +30,10 @@ sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 # Install dependencies (as user "pi")
 cd /opt/zigbee2mqtt
 npm ci
+
+sudo cp zigbee2mqttconf.default.yml /opt/zigbee2mqtt/configuration.yaml
+sudo cp zigbee2mqtt.default.service /etc/systemd/system/zigbee2mqtt.service
+
+sudo systemctl start zigbee2mqtt
+
+systemctl status zigbee2mqtt.service

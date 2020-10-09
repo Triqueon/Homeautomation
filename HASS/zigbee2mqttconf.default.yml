@@ -1,0 +1,11 @@
+# MQTT settings
+mqtt:
+  # MQTT base topic for Zigbee2MQTT MQTT messages
+  base_topic: home
+  # MQTT server URL
+  server: 'mqtt://localhost'
+  # MQTT server authentication, uncomment if required:
+  # user: my_user
+  # password: my_password
+  advanced:
+    network_key: GENERATE

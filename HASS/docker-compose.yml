@@ -19,9 +19,6 @@ services:
     image: eclipse-mosquitto
     hostname: mosquitto
     network_mode: host
-    devices:
-      #this may need to be changed/amended if more than one device is attached
-      - /dev/ttyACM0:/dev/ttyACM0
     restart: unless-stopped
 
   # mariadb:

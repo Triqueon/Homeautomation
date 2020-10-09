@@ -23,7 +23,7 @@ services:
 
   mariadb:
     hostname: mariadb
-    image: mariadb
+    image: ${DB_IMAGE}
     restart: unless-stopped
     network_mode: host
     volumes:

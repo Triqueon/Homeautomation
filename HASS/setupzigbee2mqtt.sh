@@ -10,6 +10,7 @@ if [ ! $(getent group zigbee) ]; then
 fi
 if ! id 'zigbee' &>/dev/null; then
   sudo adduser zigbee --ingroup zigbee
+  sudo usermod -a -G dialout zigbee
 fi
 # Setup Node.js repository
 sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -42,7 +43,6 @@ sudo chown -R zigbee:zigbee /opt/zigbee2mqtt
 # Install dependencies (as user "pi")
 cd /opt/zigbee2mqtt
 sudo -u zigbee npm ci
-
 
 sudo systemctl start zigbee2mqtt
 sudo systemctl enable zigbee2mqtt.service

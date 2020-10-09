@@ -16,8 +16,3 @@ fi
 export DB_IMAGE_NAME=$DB_IMAGE
 
 docker-compose up -d --build
-
-# install zigbee2mqtt if necessary
-if [ ! -d /opt/zigbee2mqtt ]; then
-  ./setupzigbee2mqtt.sh
-fi

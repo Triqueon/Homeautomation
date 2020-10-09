@@ -10,7 +10,7 @@
 #substitute community image in this case
 DB_IMAGE="mariadb"
 ARCHITECTURE=$(sudo docker info | grep "Architecture: " | sed 's/^.*: //')
-if [[ $ARCHITECTURE == "armv7"]]; then
+if [[ $ARCHITECTURE == armv7* ]]; then
   DB_IMAGE="jsurf/rpi-mariadb"
 fi
 echo $DB_IMAGE

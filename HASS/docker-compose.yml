@@ -13,7 +13,7 @@ services:
         source: ./ha_conf
         target: /config
     depends_on:
-      - mariadb
+      # - mariadb
 
   mosquitto:
     image: eclipse-mosquitto
@@ -21,12 +21,17 @@ services:
     network_mode: host
     restart: unless-stopped
 
-  mariadb:
-    hostname: mariadb
-    image: ${DB_IMAGE_NAME}
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - type: bind
-        source: ./db_data
-        target: /var/lib/mysql
+  # mariadb:
+  #   hostname: mariadb
+  #   image: ${DB_IMAGE_NAME}
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWD}
+  #     MYSQL_DATABASE: hassdb
+  #     MYSQL_USER: hass
+  #     MYSQL_PASSWORD: ${DB_USER_PASSWD}
+  #   volumes:
+  #     - type: bind
+  #       source: ./db_data
+  #       target: /var/lib/mysql

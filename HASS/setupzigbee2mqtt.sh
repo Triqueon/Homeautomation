@@ -45,5 +45,6 @@ sudo -u zigbee npm ci
 
 
 sudo systemctl start zigbee2mqtt
+sudo systemctl enable zigbee2mqtt.service
 
 systemctl status zigbee2mqtt.service

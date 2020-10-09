@@ -9,7 +9,7 @@
 #check for armv7 architecture, not supported by default mariadb or mysql image as of 9/10/2020
 #substitute community image in this case
 DB_IMAGE="mariadb"
-ARCHITECTURE = $(sudo docker info | grep "Architecture: " | sed 's/^.*: //')
+ARCHITECTURE=$(sudo docker info | grep "Architecture: " | sed 's/^.*: //')
 if [[ $ARCHITECTURE == "armv7"]]; then
   DB_IMAGE="jsurf/rpi-mariadb"
 fi

@@ -8,5 +8,6 @@ mqtt:
   # MQTT server authentication, uncomment if required:
   # user: my_user
   # password: my_password
-  #advanced:
+  advanced:
   #  network_key: GENERATE
+    log_level: debug

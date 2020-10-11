@@ -39,6 +39,7 @@ services:
     privileged: true
     environment:
       - TZ=Europe/Amsterdam
+      - DEBUG=zigbee-herdsman
 
   # mariadb:
   #   hostname: mariadb

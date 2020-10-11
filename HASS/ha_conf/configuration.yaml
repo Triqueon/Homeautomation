@@ -1,0 +1,9 @@
+mqtt:
+  discovery: true
+  broker: localhost
+  port: 1883
+# Text to speech
+tts:
+  - platform: google_translate
+homeassistant:
+  packages: !include_dir_named packages

@@ -1,5 +1,8 @@
 homeassistant: true
 # MQTT settings
+
+permit_join: false
+
 mqtt:
   # MQTT base topic for Zigbee2MQTT MQTT messages
   base_topic: zigbee2mqtt

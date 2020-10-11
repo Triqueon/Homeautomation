@@ -1,3 +1,5 @@
+default_config:
+
 mqtt:
   discovery: true
   broker: localhost

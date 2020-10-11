@@ -12,5 +12,4 @@ mqtt:
   # user: my_user
   # password: my_password
   advanced:
-  #  network_key: GENERATE
-    log_level: debug
+    network_key: GENERATE

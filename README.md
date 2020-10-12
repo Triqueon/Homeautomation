@@ -14,6 +14,6 @@ cd HASS
 docker-compose up -d --build
 ```
 
-geplant:
+WIP:
 
 * Pihole

@@ -15,4 +15,11 @@ if [[ $ARCHITECTURE == armv7* ]]; then
 fi
 export DB_IMAGE_NAME=$DB_IMAGE
 
+#make HACS integration available
+git clone https://github.com/hacs/integration.git ha_conf/custom_components/hacs
+cd ha_conf/custom/components/hacs
+git checkout master
+
+cd ../../..
+
 docker-compose up -d --build

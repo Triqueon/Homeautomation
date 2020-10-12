@@ -16,10 +16,6 @@ fi
 export DB_IMAGE_NAME=$DB_IMAGE
 
 #make HACS integration available
-git clone https://github.com/hacs/integration.git ha_conf/custom_components/hacs
-cd ha_conf/custom/components/hacs
-git checkout master
-
-cd ../../..
+curl -sfSL https://hacs.xyz/install | bash -
 
 docker-compose up -d --build

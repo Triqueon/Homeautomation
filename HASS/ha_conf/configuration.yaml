@@ -7,5 +7,13 @@ mqtt:
 # Text to speech
 tts:
   - platform: google_translate
+
 homeassistant:
   packages: !include_dir_named packages
+
+hacs:
+  token: !secret hacs_github_token
+  sidepanel_title: HACS
+  sidepanel_icon: mdi:store
+  options:
+    experimental: true

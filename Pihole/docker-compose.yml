@@ -12,6 +12,8 @@ services:
       - "443:443/tcp"
     environment:
       TZ: 'Europe/Berlin'
+      #uncomment this to use over WiFi
+      #INTERFACE: 'wlan0'
       # WEBPASSWORD: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:

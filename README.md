@@ -6,6 +6,7 @@ Vorhandenes:
 * Home Assistant
 * MQTT Broker Mosquitto
 * Zigbee2MQTT
+* Pihole
 * Jeweils Basiskonfig und Integration von Z2M in HASS
 
 Verfügbar mittels
@@ -16,4 +17,4 @@ docker-compose up -d --build
 
 WIP:
 
-* Pihole
+* MariaDB für Langzeitdaten für HASS

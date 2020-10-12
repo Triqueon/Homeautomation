@@ -13,14 +13,17 @@ services:
     environment:
       TZ: 'Europe/Berlin'
       #uncomment this to use over WiFi
-      #INTERFACE: 'wlan0'
+      # INTERFACE: 'wlan0'
       # WEBPASSWORD: 'set a secure password here or it will be random'
-    # Volumes store your data between container upgrades
+      # Alternatively, run docker-compose exec pihole sudo pihole -a -p after
+      # the container is up to change the password
     volumes:
       - './pihole/:/etc/pihole/'
       - './dnsmasq/:/etc/dnsmasq.d/'
     cap_add:
       - NET_ADMIN
+    # The first entry must be 127.0.0.1, otherwise startup will fail as the
+    # pihole will try to query itself over network before being available
     dns:
       - 127.0.0.1
       - 8.8.8.8

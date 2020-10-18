@@ -3,7 +3,7 @@ set -e
 
 # install kernel headers and wireguard if not already present
 if ! which wg > /dev/null; then
-  sudo apt-get install raspberry-pi-kernel-headers
+  sudo apt-get install raspberrypi-kernel-headers
   echo "deb http://httpredir.debian.org/debian buster-backports main contrib non-free" | sudo tee --append /etc/apt/sources.list.d/debian-backports.list
   wget -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add -
   sudo apt update

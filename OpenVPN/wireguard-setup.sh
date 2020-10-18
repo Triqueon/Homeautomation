@@ -20,7 +20,7 @@ PUBLIC_KEY=`sudo cat server_public.key`
 #enable IPv4 forwarding
 sudo perl -pi -e 's/#{1,}?net.ipv4.ip_forward ?= ?(0|1)/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 
-echo "Please enter the domain under which the VPN server will be available:\n"
+echo "Please enter the domain under which the VPN server will be available:"
 read $DOMAIN
 
 sed "s/<PRIVATE_KEY>/${PRIVATE_KEY}/" wg0.conf | sudo tee /etc/wireguard/wg0.conf

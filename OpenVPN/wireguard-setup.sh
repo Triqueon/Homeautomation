@@ -14,8 +14,8 @@ fi
 #generate keys for server and one client
 umask 077
 wg genkey | tee server_private.key | wg pubkey > server_public.key
-$PRIVATE_KEY= cat /etc/wireguard/server_private.key
-$PUBLIC_KEY= cat /etc/wireguard/server_public.key
+PRIVATE_KEY=`cat /etc/wireguard/server_private.key`
+PUBLIC_KEY=`cat /etc/wireguard/server_public.key`
 
 #enable IPv4 forwarding
 sudo perl -pi -e 's/#{1,}?net.ipv4.ip_forward ?= ?(0|1)/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf

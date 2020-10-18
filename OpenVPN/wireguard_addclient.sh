@@ -4,7 +4,7 @@ set -e
 umask 077
 wg genkey | tee peer_private.key | wg pubkey > peer_public.key
 
-PRIVATE_KEY=`cat peer_private.key`
+PRIVATE_KEY=`sudo cat peer_private.key`
 PUBLIC_KEY=`sudo cat peer_public.key`
 
 sed "s/<PRIVATE_KEY>/${PRIVATE_KEY}/" client_conf.template > client.conf

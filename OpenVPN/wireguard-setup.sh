@@ -12,10 +12,8 @@ if ! which wg > /dev/null; then
 fi
 
 #generate keys for server and one client
-sudo su
 umask 077
 wg genkey | tee server_private.key | wg pubkey > server_public.key
-exit
 $PRIVATE_KEY=sudo cat /etc/wireguard/server_private.key
 $PUBLIC_KEY=sudo cat /etc/wireguard/server_public.key
 

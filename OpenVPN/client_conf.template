@@ -1,0 +1,11 @@
+[Interface]
+Address = 100.42.42.2/32
+DNS = 100.42.42.1
+PrivateKey = <insert peer1_private.key>
+
+#Server
+[Peer]
+PublicKey = <PUBLIC_KEY>
+Endpoint = <DOMAIN>:51820
+AllowedIPs = 0.0.0.0/0, ::/0
+PersistentkeepAlive = 25

@@ -24,8 +24,8 @@ echo "Please enter the domain under which the VPN server will be available:\n"
 read $DOMAIN
 
 sed "s/<PRIVATE_KEY>/${PRIVATE_KEY}/" wg0.conf | sudo tee /etc/wireguard/wg0.conf
-sed "s/<PUBLIC_KEY>/${PUBLIC_KEY}/" client_conf.template > client_conf.template
-sed "s/<DOMAIN>/${DOMAIN}/" client_conf.template > client_conf.template
+sed -i "s/<PUBLIC_KEY>/${PUBLIC_KEY}/" client_conf.template
+sed -i "s/<DOMAIN>/${DOMAIN}/" client_conf.template
 
 sudo systemctl enable wg-quick@wg0
 sudo systemctl start wg-quick@wg0

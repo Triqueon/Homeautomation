@@ -7,7 +7,7 @@ wg genkey | tee peer_private.key | wg pubkey > peer_public.key
 PRIVATE_KEY=`sudo cat peer_private.key`
 PUBLIC_KEY=`sudo cat peer_public.key`
 
-sed "s/<PRIVATE_KEY>/${PRIVATE_KEY}/" client_conf.template > client.conf
+sed 's%<PRIVATE_KEY>%'${PRIVATE_KEY}'%' client_conf.template > client.conf
 
 echo "Please enter device IP number (2-254):\n"
 read $CLIENT_IP

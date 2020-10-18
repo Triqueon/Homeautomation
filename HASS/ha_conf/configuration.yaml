@@ -17,3 +17,7 @@ hacs:
   sidepanel_icon: mdi:store
   options:
     experimental: true
+
+lovelace:
+  mode: yaml
+  resources

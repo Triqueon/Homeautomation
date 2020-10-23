@@ -10,6 +10,7 @@ tts:
 
 homeassistant:
   packages: !include_dir_named packages
+  customize: !include customize/customize.yaml
 
 hacs:
   token: !secret hacs_github_token
@@ -20,4 +21,10 @@ hacs:
 
 lovelace:
   mode: yaml
-  resources
+
+frontend:
+  themes: !include themes.yaml
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret

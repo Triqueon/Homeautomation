@@ -1,15 +1,14 @@
 homeassistant: true
-# MQTT settings
-
-permit_join: false
-
+permit_join: true
 mqtt:
-  # MQTT base topic for Zigbee2MQTT MQTT messages
   base_topic: zigbee2mqtt
-  # MQTT server URL
   server: 'mqtt://localhost'
-  # MQTT server authentication, uncomment if required:
-  # user: my_user
-  # password: my_password
   advanced:
     network_key: GENERATE
+devices:
+  '0x588e81fffebcd96b':
+    friendly_name: Tradfri 2
+  '0x588e81fffe6bd2ef':
+    friendly_name: Barlampe
+  '0x842e14fffe1264af':
+    friendly_name: '0x842e14fffe1264af'

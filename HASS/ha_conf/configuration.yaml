@@ -19,12 +19,23 @@ hacs:
   options:
     experimental: true
 
-lovelace:
-  mode: yaml
-
 frontend:
   themes: !include themes.yaml
+
+logger:
+  logs:
+    homeassistant.components.http.ban: warning
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: 127.0.0.1
 
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
+
+sensor:
+  - platform: fail2ban
+    jails:
+      - hass-iptables
+    file_path: /fail2ban/fail2ban.log

@@ -23,12 +23,15 @@ frontend:
   themes: !include themes.yaml
 
 logger:
+  default: warn
   logs:
     homeassistant.components.http.ban: warning
 
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 127.0.0.1
+  trusted_proxies:
+    - 10.10.0.2
+    - 127.0.0.1
 
 google:
   client_id: !secret google_client_id

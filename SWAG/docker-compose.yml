@@ -22,4 +22,5 @@ services:
     ports:
       - 443:443
       - 80:80 #optional
+    network_mode: host
     restart: unless-stopped

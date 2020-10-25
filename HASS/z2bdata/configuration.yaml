@@ -3,12 +3,8 @@ permit_join: true
 mqtt:
   base_topic: zigbee2mqtt
   server: 'mqtt://localhost'
-  advanced:
-    network_key: GENERATE
 devices:
   '0x588e81fffebcd96b':
     friendly_name: Tradfri 2
   '0x588e81fffe6bd2ef':
     friendly_name: Barlampe
-  '0x842e14fffe1264af':
-    friendly_name: '0x842e14fffe1264af'

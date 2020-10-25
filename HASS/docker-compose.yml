@@ -12,6 +12,9 @@ services:
       - type: bind
         source: ./ha_conf
         target: /config
+      - type: bind
+        source: ./proxyconfig/log/fail2ban
+        target: /fail2ban
     # depends_on:
       # - mariadb
 
@@ -39,6 +42,30 @@ services:
     privileged: true
     environment:
       - TZ=Europe/Amsterdam
+
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - URL=home.pascalstein.de
+      - SUBDOMAINS=vpn,hass
+      - VALIDATION=http
+      - EMAIL=pascal.stein@gmail.com
+      - ONLY_SUBDOMAINS=true #optional
+      #- STAGING=true #optional
+    volumes:
+      - ./proxyconfig:/config
+      - ./ha_conf:/hass
+    ports:
+      - 443:443
+      - 80:80 #optional
+    network_mode: host
+    restart: unless-stopped
 
   # mariadb:
   #   hostname: mariadb

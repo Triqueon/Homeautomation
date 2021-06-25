@@ -53,10 +53,9 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
       - URL=home.pascalstein.de
-      - SUBDOMAINS=vpn,hass
+      - SUBDOMAINS=hass
       - VALIDATION=http
       - EMAIL=pascal.stein@gmail.com
-      - ONLY_SUBDOMAINS=true #optional
       #- STAGING=true #optional
     volumes:
       - ./proxyconfig:/config
@@ -65,6 +64,17 @@ services:
       - 443:443
       - 80:80 #optional
     network_mode: host
+    restart: unless-stopped
+
+  heimdall:
+    image:linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ./heimdall_conf:/config
     restart: unless-stopped
 
   # mariadb:

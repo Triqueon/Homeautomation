@@ -1,23 +1,11 @@
 default_config:
 
-mqtt:
-  discovery: true
-  broker: localhost
-  port: 1883
-# Text to speech
 tts:
   - platform: google_translate
 
 homeassistant:
   packages: !include_dir_named packages
   customize: !include customize/customize.yaml
-
-hacs:
-  token: !secret hacs_github_token
-  sidepanel_title: HACS
-  sidepanel_icon: mdi:store
-  options:
-    experimental: true
 
 frontend:
   themes: !include themes.yaml
@@ -42,3 +30,5 @@ sensor:
     jails:
       - hass-iptables
     file_path: /fail2ban/fail2ban.log
+
+automation: !include automations.yaml

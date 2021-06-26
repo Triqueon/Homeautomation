@@ -3,11 +3,10 @@ version: '3.6'
 services:
   hass:
     image: homeassistant/home-assistant
-    hostname: homeassistant
+    container_name: hass
     restart: unless-stopped
     environment:
       - TZ=Europe/Berlin
-    network_mode: host
     volumes:
       - type: bind
         source: ./ha_conf
@@ -15,14 +14,10 @@ services:
       - type: bind
         source: ./proxyconfig/log/fail2ban
         target: /fail2ban
+    ports:
+      - 8123:8123
     # depends_on:
       # - mariadb
-
-  mosquitto:
-    image: eclipse-mosquitto
-    hostname: mosquitto
-    network_mode: host
-    restart: unless-stopped
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
@@ -37,8 +32,7 @@ services:
         read_only: true
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
-    restart: always
-    network_mode: host
+    restart: unless-stopped
     privileged: true
     environment:
       - TZ=Europe/Amsterdam
@@ -63,11 +57,10 @@ services:
     ports:
       - 443:443
       - 80:80 #optional
-    network_mode: host
     restart: unless-stopped
 
   heimdall:
-    image:linuxserver/heimdall
+    image: linuxserver/heimdall
     container_name: heimdall
     environment:
       - PUID=1000

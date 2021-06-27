@@ -71,7 +71,7 @@ services:
     restart: unless-stopped
 
   mariadb:
-    hostname: mariadb
+    container_name: mariadb
     image: linuxserver/mariadb
     restart: unless-stopped
     environment:
@@ -80,6 +80,7 @@ services:
       - TZ=Europe/London
       - MYSQL_DATABASE=homeassistant
       - MYSQL_USER=hass
+      
     volumes:
       - ./data/mysql:/config
     ports:

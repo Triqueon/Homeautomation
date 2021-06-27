@@ -1,0 +1,87 @@
+version: '3.6'
+
+services:
+  hass:
+    image: homeassistant/home-assistant
+    container_name: hass
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - type: bind
+        source: ./conf/hass
+        target: /config
+      - type: bind
+        source: ./conf/swag/log/fail2ban
+        target: /fail2ban
+    ports:
+      - 8123:8123
+    depends_on:
+      - mariadb
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    volumes:
+      - type: bind
+        source: ./z2bdata
+        target: /app/data
+      - type: bind
+        source: /run/udev
+        target: /run/udev
+        read_only: true
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=Europe/Amsterdam
+
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - URL=home.pascalstein.de
+      - SUBDOMAINS=hass
+      - VALIDATION=http
+      - EMAIL=pascal.stein@gmail.com
+      #- STAGING=true #optional
+    volumes:
+      - ./conf/swag:/config
+      - ./conf/hass:/hass
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ./conf/heimdall:/config
+    restart: unless-stopped
+
+  mariadb:
+    hostname: mariadb
+    image: linuxserver/mariadb
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - MYSQL_DATABASE=homeassistant
+      - MYSQL_USER=hass
+    volumes:
+      - ./data/mysql:/config
+    ports:
+      - 3306:3306
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+camera:
+  - platform: generic
+    name: Webcam-Ensdorf
+    still_image_url: http://webcam.intersaar.de/saarpolygon/saarpolygon.jpg
+  - platform: generic
+    name: Regenradar
+    still_image_url: https://www.dwd.de/DWD/wetter/radar/radfilm_brd_akt.gif
+  - platform: generic
+    name: Regenradar_Saarland
+    still_image_url: https://www.dwd.de/DWD/wetter/radar/rad_rps_akt.jpg

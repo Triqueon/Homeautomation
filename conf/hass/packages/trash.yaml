@@ -1,0 +1,110 @@
+binary_sensor:
+  # Garbage Day sensors
+  - platform: template
+    sensors:
+      restmuell:
+        friendly_name: 'Restmüll'
+        icon_template: >
+          {% if is_state('binary_sensor.restmuell', 'on') %}
+            mdi:delete-alert
+          {% else %}
+            mdi:delete-outline
+          {% endif %}
+        # ON 7 hours (25200s) before all_day event = 17:00 the day before, and OFF at 17:00 on the day,
+        # or 1 hour (3600s) before normal event (Problemmüll)
+        # CAREFUL: Binary sensors need true/false as input, NOT UI niceties like on/off or the like!
+        value_template: >-
+          {% set calendar = 'calendar.restmuell' %}
+          {# Adapt these for your needs #}
+          {% set seconds_before_all_day = 25200 %}
+          {% set seconds_before_end_all_day = 25200 %}
+          {% set seconds_before_single = 3600 %}
+          {% set start = state_attr(calendar,'start_time') %}
+          {# Prevent error when no calendar event (we won't have a start_time then) #}
+          {% if start != None %}
+            {% set _now = now().timestamp() %}
+            {% set start = as_timestamp(start) %}
+            {% set end = as_timestamp(state_attr(calendar,'end_time')) %}
+            {% if _now < end %}
+              {% if state_attr(calendar,'all_day') %}
+                {{ _now < end - seconds_before_end_all_day and start - _now < seconds_before_all_day }}
+              {% else %}
+                {{ start - _now < seconds_before_single }}
+              {% endif %}
+            {% else %}
+              false
+            {% endif %}
+          {% else %}
+            false
+          {% endif %}
+      gelbersack:
+        friendly_name: 'Gelber Sack'
+        icon_template: >
+          {% if is_state('binary_sensor.gelbersack', 'on') %}
+            mdi:delete-alert
+          {% else %}
+            mdi:delete-outline
+          {% endif %}
+        # ON 7 hours (25200s) before all_day event = 17:00 the day before, and OFF at 17:00 on the day,
+        # or 1 hour (3600s) before normal event (Problemmüll)
+        # CAREFUL: Binary sensors need true/false as input, NOT UI niceties like on/off or the like!
+        value_template: >-
+          {% set calendar = 'calendar.gelbersack' %}
+          {# Adapt these for your needs #}
+          {% set seconds_before_all_day = 25200 %}
+          {% set seconds_before_end_all_day = 25200 %}
+          {% set seconds_before_single = 3600 %}
+          {% set start = state_attr(calendar,'start_time') %}
+          {# Prevent error when no calendar event (we won't have a start_time then) #}
+          {% if start != None %}
+            {% set _now = now().timestamp() %}
+            {% set start = as_timestamp(start) %}
+            {% set end = as_timestamp(state_attr(calendar,'end_time')) %}
+            {% if _now < end %}
+              {% if state_attr(calendar,'all_day') %}
+                {{ _now < end - seconds_before_end_all_day and start - _now < seconds_before_all_day }}
+              {% else %}
+                {{ start - _now < seconds_before_single }}
+              {% endif %}
+            {% else %}
+              false
+            {% endif %}
+          {% else %}
+            false
+          {% endif %}
+      biomuell:
+        friendly_name: 'Biomüll'
+        icon_template: >
+          {% if is_state('binary_sensor.biomuell', 'on') %}
+            mdi:delete-alert
+          {% else %}
+            mdi:delete-outline
+          {% endif %}
+
+        # ON 7 hours (25200s) before all_day event = 17:00 the day before, and OFF at 17:00 on the day,
+        # or 1 hour (3600s) before normal event (Problemmüll)
+        # CAREFUL: Binary sensors need true/false as input, NOT UI niceties like on/off or the like!
+        value_template: >-
+          {% set calendar = 'calendar.biomuell' %}
+          {# Adapt these for your needs #}
+          {% set seconds_before_all_day = 25200 %}
+          {% set seconds_before_end_all_day = 25200 %}
+          {% set seconds_before_single = 3600 %}
+          {% set start = state_attr(calendar,'start_time') %}
+          {# Prevent error when no calendar event (we won't have a start_time then) #}
+          {% if start != None %}
+            {% set _now = now().timestamp() %}
+            {% set start = as_timestamp(start) %}
+            {% set end = as_timestamp(state_attr(calendar,'end_time')) %}
+             {% if _now < end %}
+              {% if state_attr(calendar,'all_day') %}
+                {{ _now < end - seconds_before_end_all_day and start - _now < seconds_before_all_day }}
+              {% else %}
+                {{ start - _now < seconds_before_single }}
+              {% endif %}
+            {% else %}
+              false
+            {% endif %}
+          {% else %}
+            false
+          {% endif %}

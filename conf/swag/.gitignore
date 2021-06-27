@@ -1,8 +1,8 @@
-*
+/*
 !nginx/
 nginx/*
 !nginx/proxy-confs/
 !nginx/site-confs/
-nginx/proxy-confs/*.sample.conf
+nginx/proxy-confs/*.conf.sample
 !.gitignore
 

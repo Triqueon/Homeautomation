@@ -1,9 +1,0 @@
-# Pi-Hole switch
-switch:
-  - platform: command_line
-    switches:
-      pihole_switch:
-        command_on: "curl -X GET 'http://10.10.0.2:8080/admin/api.php?enable&auth=58c6c5f424bd7c2ac3cd7c1042b5d6eecc7e7faed2b7d069d34a9df4f35db936'"
-        command_off: "curl -X GET 'http://10.10.0.2:8080/admin/api.php?disable=3600&auth=58c6c5f424bd7c2ac3cd7c1042b5d6eecc7e7faed2b7d069d34a9df4f35db936'"
-        command_state: "curl -X GET 'http://10.10.0.2:8080/admin/api.php?status'"
-        value_template: "{{ value_json.status == 'enabled' }}"

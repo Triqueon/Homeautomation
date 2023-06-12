@@ -1,8 +1,5 @@
 default_config:
 
-tts:
-  - platform: google_translate
-
 homeassistant:
   packages: !include_dir_named packages
   customize: !include customize/customize.yaml
@@ -26,10 +23,8 @@ http:
   trusted_proxies:
     - !secret local_ip
     - 127.0.0.1
-
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+    - ::1
+    - 172.16.0.0/12
 
 sensor:
   - platform: fail2ban

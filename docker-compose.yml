@@ -17,6 +17,7 @@ services:
     ports:
       - 8123:8123
     depends_on:
+      - swag
       - mariadb
 
   zigbee2mqtt:
@@ -47,10 +48,10 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
       - URL=home.pascalstein.de
-      - SUBDOMAINS=hass
+      - SUBDOMAINS=cloud,hass
       - VALIDATION=http
       - EMAIL=pascal.stein@gmail.com
-      #- STAGING=true #optional
+    #  - STAGING=true #optional
     volumes:
       - ./conf/swag:/config
       - ./conf/hass:/hass
@@ -72,7 +73,7 @@ services:
 
   mariadb:
     container_name: mariadb
-    image: linuxserver/mariadb
+    image: linuxserver/mariadb:latest
     restart: unless-stopped
     environment:
       - PUID=1000
@@ -86,3 +87,18 @@ services:
     ports:
       - 3306:3306
     restart: unless-stopped
+
+  nextcloud:
+    image: linuxserver/nextcloud
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./conf/nextcloud:/config
+      - ./data/nextcloud:/data
+    restart: unless-stopped
+    depends_on:
+      - swag
+      - mariadb

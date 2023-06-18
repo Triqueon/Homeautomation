@@ -1,0 +1,23 @@
+binary_sensor.biomuell:
+  templates:
+    icon_color: >
+      if (state == 'on') return 'lightgreen';
+      return 'gray';
+    theme: >
+      if (state == 'on') return 'Bio';
+
+binary_sensor.gelbersack:
+  templates:
+    icon_color: >
+      if (state == 'on') return 'yellow';
+      return 'gray';
+    theme: >
+      if (state == 'on') return 'Gelb';
+
+binary_sensor.restmuell:
+  templates:
+    icon_color: >
+      if (state == 'on') return 'black';
+      return 'gray';
+    theme: >
+     if (state == 'on') return 'Rest';

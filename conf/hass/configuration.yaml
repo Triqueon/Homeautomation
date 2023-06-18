@@ -4,9 +4,6 @@ homeassistant:
   packages: !include_dir_named packages
   customize: !include customize/customize.yaml
 
-frontend:
-  themes: !include themes.yaml
-
 logger:
   default: warn
   logs:

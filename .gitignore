@@ -2,5 +2,6 @@ conf/nextcloud/www
 conf/nextcloud/.cache
 access.log*
 error.log*
+*.log
 app.sqlite
 

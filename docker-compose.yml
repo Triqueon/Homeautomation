@@ -59,7 +59,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
       - URL=home.pascalstein.de
-      - SUBDOMAINS=cloud,hass,pihole
+      - SUBDOMAINS=cloud,hass
       - VALIDATION=http
       - EMAIL=pascal.stein@gmail.com
     #  - STAGING=true #optional
@@ -121,7 +121,9 @@ services:
     networks:
       - home
       - db
+
   pihole:
+    container_name: pihole
     hostname: pihole
     image: pihole/pihole:latest
     ports:
@@ -148,5 +150,4 @@ services:
       - 127.0.0.1
       - 8.8.8.8
     restart: unless-stopped
-    networks:
-      - home
+    network_mode: host

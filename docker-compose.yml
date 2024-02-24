@@ -58,7 +58,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
-      - URL=home.pascalstein.de
+      - URL=home.arendt-stein.de
       - SUBDOMAINS=cloud,hass
       - VALIDATION=http
       - EMAIL=pascal.stein@gmail.com
@@ -83,6 +83,8 @@ services:
     volumes:
       - ./conf/heimdall:/config
     restart: unless-stopped
+    depends_on:
+      - swag
     networks:
       - home
 
@@ -127,7 +129,7 @@ services:
     hostname: pihole
     image: pihole/pihole:latest
     ports:
-      - "10.10.0.2:53:53/tcp"
+      - "10.10.0.4:53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
       - "8080:80/tcp"

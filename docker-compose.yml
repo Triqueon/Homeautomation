@@ -127,7 +127,7 @@ services:
     hostname: pihole
     image: pihole/pihole:latest
     ports:
-      - "53:53/tcp"
+      - "10.10.0.2:53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
       - "8080:80/tcp"
@@ -150,4 +150,3 @@ services:
       - 127.0.0.1
       - 8.8.8.8
     restart: unless-stopped
-    network_mode: host
